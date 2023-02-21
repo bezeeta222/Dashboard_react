@@ -56,8 +56,8 @@ function App({
     <CacheProvider value={emotionCache}>
       <HelmetProvider>
         <Helmet
-          titleTemplate="%s | Mira"
-          defaultTitle="Mira - React Material Admin Dashboard"
+          titleTemplate="xamble "
+          defaultTitle="xamble"
         />
         <Provider store={store}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { darken } from "polished";
-import { Search as SearchIcon } from "react-feather";
+import { Divide, Search as SearchIcon } from "react-feather";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -10,6 +10,7 @@ import {
   AppBar as MuiAppBar,
   IconButton as MuiIconButton,
   Toolbar,
+  Divider,
 } from "@mui/material";
 
 import { Menu as MenuIcon } from "@mui/icons-material";
@@ -18,6 +19,8 @@ import NavbarNotificationsDropdown from "./NavbarNotificationsDropdown";
 import NavbarMessagesDropdown from "./NavbarMessagesDropdown";
 import NavbarLanguagesDropdown from "./NavbarLanguagesDropdown";
 import NavbarUserDropdown from "./NavbarUserDropdown";
+import Logo from "../../vendor/xamble.svg";
+
 
 const AppBar = styled(MuiAppBar)`
   background: ${(props) => props.theme.header.background};
@@ -76,6 +79,15 @@ const Input = styled(InputBase)`
   }
 `;
 
+const Brand = styled(Logo)`
+  fill: ${(props) => props.theme.palette.primary.main};
+  width: 158px;
+  height: 39px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+`;
+
 interface NavbarProps {
   theme: {};
   onDrawerToggle: React.MouseEventHandler<HTMLElement>;
@@ -88,7 +100,7 @@ function Navbar({ onDrawerToggle }: NavbarProps) {
       <AppBar position="sticky" elevation={0}>
         <Toolbar>
           <Grid container alignItems="center">
-            <Grid item sx={{ display: { xs: "block", md: "none" } }}>
+            {/* <Grid item sx={{ display: { xs: "block", md: "none" } }}>
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
@@ -97,6 +109,12 @@ function Navbar({ onDrawerToggle }: NavbarProps) {
               >
                 <MenuIcon />
               </IconButton>
+            </Grid> */}
+            <Grid item>
+              <Brand />
+            </Grid>
+            <Grid item>
+              <Divider orientation="vertical" sx={{ borderBottomWidth: '45px', marginLeft: '20px' }} />
             </Grid>
             <Grid item>
               <Search>
@@ -110,8 +128,13 @@ function Navbar({ onDrawerToggle }: NavbarProps) {
             <Grid item>
               <NavbarMessagesDropdown />
               <NavbarNotificationsDropdown />
-              <NavbarLanguagesDropdown />
+            </Grid>
+            <Grid item>
+              <Divider orientation="vertical" sx={{ borderBottomWidth: '45px', marginLeft: '20px' }} />
+            </Grid>
+            <Grid>
               <NavbarUserDropdown />
+              <NavbarLanguagesDropdown />
             </Grid>
           </Grid>
         </Toolbar>

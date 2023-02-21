@@ -17,7 +17,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Bell, Home, UserPlus, Server } from "react-feather";
+import { Settings, Home, UserPlus, Server } from "react-feather";
 
 const Popover = styled(MuiPopover)`
   .MuiPaper-root {
@@ -56,7 +56,6 @@ function Notification({ title, description, Icon }: NotificationProps) {
         <ListItemAvatar>
           <Avatar>
             <SvgIcon fontSize="small">
-              <Icon />
             </SvgIcon>
           </Avatar>
         </ListItemAvatar>
@@ -90,7 +89,7 @@ function NavbarNotificationsDropdown() {
       <Tooltip title="Notifications">
         <IconButton color="inherit" ref={ref} onClick={handleOpen} size="large">
           <Indicator badgeContent={7}>
-            <Bell />
+            <Settings />
           </Indicator>
         </IconButton>
       </Tooltip>
@@ -123,7 +122,7 @@ function NavbarNotificationsDropdown() {
             <Notification
               title="Lorem ipsum"
               description="Aliquam ex eros, imperdiet vulputate hendrerit et"
-              Icon={Bell}
+              Icon={Settings}
             />
             <Notification
               title="New login"

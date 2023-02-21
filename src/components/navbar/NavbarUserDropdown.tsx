@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { Power } from "react-feather";
+import { Bell } from "react-feather";
 import { useRouter } from "next/router";
 
 import {
@@ -47,7 +47,7 @@ function NavbarUserDropdown() {
           color="inherit"
           size="large"
         >
-          <Power />
+          <Bell />
         </IconButton>
       </Tooltip>
       <Menu

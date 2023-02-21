@@ -14,6 +14,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/Footer";
 import Settings from "../components/Settings";
 
+
 const drawerWidth = 258;
 
 const Root = styled.div`
@@ -50,6 +51,8 @@ const MainContent = styled(Paper)`
   }
 `;
 
+
+
 const Dashboard = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -64,7 +67,7 @@ const Dashboard = ({ children }) => {
     <Root>
       <CssBaseline />
       <GlobalStyle />
-      <Drawer>
+      {/* <Drawer>
         <Box sx={{ display: { xs: "block", lg: "none" } }}>
           <Sidebar
             PaperProps={{ style: { width: drawerWidth } }}
@@ -80,7 +83,7 @@ const Dashboard = ({ children }) => {
             items={dashboardItems}
           />
         </Box>
-      </Drawer>
+      </Drawer> */}
       <AppContent>
         <Navbar onDrawerToggle={handleDrawerToggle} />
         <MainContent p={isLgUp ? 12 : 5}>

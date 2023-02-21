@@ -31,7 +31,7 @@ function Analytics() {
 
   return (
     <React.Fragment>
-      <Helmet title="Analytics Dashboard" />
+      {/* <Helmet title="Analytics Dashboard" /> */}
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>

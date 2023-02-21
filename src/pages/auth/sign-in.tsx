@@ -13,8 +13,8 @@ import Logo from "../../vendor/logo.svg";
 
 const Brand = styled(Logo)`
   fill: ${(props) => props.theme.palette.primary.main};
-  width: 64px;
-  height: 64px;
+  width: 84px;
+  height: 84px;
   margin-bottom: 32px;
 `;
 
@@ -37,17 +37,8 @@ function SignIn() {
   return (
     <React.Fragment>
       <Brand />
+
       <Wrapper>
-        <Helmet title="Sign In" />
-        <BigAvatar alt="Lucy" src="/static/img/avatars/avatar-1.jpg" />
-
-        <Typography component="h1" variant="h4" align="center" gutterBottom>
-          Welcome back, Lucy!
-        </Typography>
-        <Typography component="h2" variant="body1" align="center">
-          Sign in to your account to continue
-        </Typography>
-
         <SignInComponent />
       </Wrapper>
     </React.Fragment>

@@ -15,7 +15,7 @@ export default class MyDocument extends Document {
           />
           <meta
             name="keywords"
-            content="mira,mui,material app,react,material,kit,dashboard,application,admin,template"
+            content="xamble admin dashboard"
           />
           <meta name="author" content="Bootlab" />
 

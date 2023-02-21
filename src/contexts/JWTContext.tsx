@@ -5,6 +5,9 @@ import { JWTContextType, ActionMap, AuthState, AuthUser } from "../types/auth";
 import axios from "../utils/axios";
 import { isValidToken, setSession } from "../utils/jwt";
 
+import GraphQLClient from '../../server/client';
+import { LOGIN_USER } from '../../server/mutation';
+
 const INITIALIZE = "INITIALIZE";
 const SIGN_IN = "SIGN_IN";
 const SIGN_OUT = "SIGN_OUT";
@@ -68,66 +71,90 @@ const JWTReducer = (
 
 const AuthContext = createContext<JWTContextType | null>(null);
 
+const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHQL_URI);
+
+
 function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(JWTReducer, initialState);
 
-  useEffect(() => {
-    const initialize = async () => {
-      try {
-        const accessToken = window.localStorage.getItem("accessToken");
+  // useEffect(() => {
+  //   const initialize = async () => {
+  //     try {
+  //       const accessToken = window.localStorage.getItem("accessToken");
 
-        if (accessToken && isValidToken(accessToken)) {
-          setSession(accessToken);
+  //       if (accessToken && isValidToken(accessToken)) {
+  //         setSession(accessToken);
 
-          const response = await axios.get("/api/auth/my-account");
-          const { user } = response.data;
+  //         const response = await axios.get("/api/auth/my-account");
+  //         const { user } = response.data;
 
-          dispatch({
-            type: INITIALIZE,
-            payload: {
-              isAuthenticated: true,
-              user,
-            },
-          });
-        } else {
-          dispatch({
-            type: INITIALIZE,
-            payload: {
-              isAuthenticated: false,
-              user: null,
-            },
-          });
-        }
-      } catch (err) {
-        console.error(err);
-        dispatch({
-          type: INITIALIZE,
-          payload: {
-            isAuthenticated: false,
-            user: null,
-          },
-        });
-      }
-    };
+  //         dispatch({
+  //           type: INITIALIZE,
+  //           payload: {
+  //             isAuthenticated: true,
+  //             user,
+  //           },
+  //         });
+  //       } else {
+  //         dispatch({
+  //           type: INITIALIZE,
+  //           payload: {
+  //             isAuthenticated: false,
+  //             user: null,
+  //           },
+  //         });
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //       dispatch({
+  //         type: INITIALIZE,
+  //         payload: {
+  //           isAuthenticated: false,
+  //           user: null,
+  //         },
+  //       });
+  //     }
+  //   };
 
-    initialize();
-  }, []);
+  //   initialize();
+  // }, []);
+
+  // const signIn = async (email: string, password: string) => {
+  //   const response = await axios.post("/api/auth/sign-in", {
+  //     email,
+  //     password,
+  //   });
+  //   const { accessToken, user } = response.data;
+
+  //   setSession(accessToken);
+  //   dispatch({
+  //     type: SIGN_IN,
+  //     payload: {
+  //       user,
+  //     },
+  //   });
+  // };
 
   const signIn = async (email: string, password: string) => {
-    const response = await axios.post("/api/auth/sign-in", {
-      email,
-      password,
-    });
-    const { accessToken, user } = response.data;
+    try {
+      const { data } = await client.mutate({
+        mutation: LOGIN_USER,
+        variables: { email, password },
+      });
+      console.log(data);
+      console.log('hai');
 
-    setSession(accessToken);
-    dispatch({
-      type: SIGN_IN,
-      payload: {
-        user,
-      },
-    });
-  };
+      setSession('0xeEb73a3CE1fFd3fAbD22009312eC673Ef8cCD4ff');
+      dispatch({
+        type: SIGN_IN,
+        payload: {
+          user: data.signIn.user,
+        },
+      });
+    } catch (err) {
+      // console.error(err);
+    }
+  }
 
   const signOut = async () => {
     setSession(null);

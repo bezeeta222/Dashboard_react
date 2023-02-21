@@ -16,7 +16,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { MessageSquare } from "react-feather";
+import { HelpCircle } from "react-feather";
 
 const Popover = styled(MuiPopover)`
   .MuiPaper-root {
@@ -85,7 +85,7 @@ function NavbarMessagesDropdown() {
       <Tooltip title="Messages">
         <IconButton color="inherit" ref={ref} onClick={handleOpen} size="large">
           <Indicator badgeContent={3}>
-            <MessageSquare />
+            <HelpCircle />
           </Indicator>
         </IconButton>
       </Tooltip>
@@ -128,6 +128,7 @@ function NavbarMessagesDropdown() {
           </Box>
         </React.Fragment>
       </Popover>
+
     </React.Fragment>
   );
 }
