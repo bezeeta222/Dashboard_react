@@ -90,9 +90,9 @@ const Dashboard = ({ children }) => {
           {children}
           <Outlet />
         </MainContent>
-        <Footer />
+        {/* <Footer /> */}
       </AppContent>
-      <Settings />
+      {/* <Settings /> */}
     </Root>
   );
 };
